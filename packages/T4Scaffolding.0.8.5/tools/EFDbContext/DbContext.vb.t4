@@ -1,0 +1,15 @@
+<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="vb" #>
+Imports System.Data.Entity
+
+<#= T4Scaffolding.Namespaces.BeginVb(Model.DbContextNamespace, Model.DefaultNamespace) #>
+    Public Partial Class <#= Model.DbContextType #> : Inherits DbContext
+        ' If you want Entity Framework to drop and regenerate your database automatically whenever you change
+        ' your model schema, add the following line to the Application_Start() method in Global.asax.vb:
+        ' DbDatabase.SetInitializer(New DropCreateDatabaseIfModelChanges(Of <#= Model.DbContextType #>)())
+
+<# foreach(System.Collections.Hashtable item in Model.Properties) { #>
+		Public Property <#= item["Name"] #> As DbSet(Of <#= item["ModelType"] #>)
+<# } #>
+    End Class
+<#= T4Scaffolding.Namespaces.EndVb(Model.DbContextNamespace, Model.DefaultNamespace) #>

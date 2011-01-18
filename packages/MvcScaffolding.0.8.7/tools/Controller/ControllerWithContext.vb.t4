@@ -1,0 +1,76 @@
+﻿<#@ template language="C#" HostSpecific="True"  inherits="DynamicTransform" #>
+<#@ Output Extension="vb" #>
+Imports System.Linq
+Imports System.Web.Mvc
+<# if(!string.IsNullOrEmpty(Model.ModelTypeNamespace)) { #>
+Imports <#= Model.ModelTypeNamespace #>
+<# } #>
+<# if((!string.IsNullOrEmpty(Model.DbContextNamespace)) && (Model.DbContextNamespace != Model.ModelTypeNamespace)) { #>
+Imports <#= Model.DbContextNamespace #>
+<# } #>
+
+<#= T4Scaffolding.Namespaces.BeginVb(Model.ControllerNamespace, Model.DefaultNamespace) #>
+<# var modelName = Model.ModelType; var modelNamePlural = Model.ModelTypePluralized; #>
+    Public Class <#= modelName #>Controller : Inherits Controller
+        Private context As <#= Model.DbContextType #> = New <#= Model.DbContextType #>()
+
+        ' GET: /<#= modelName #>/
+        Public Function Index() As ViewResult 
+            return View(context.<#= modelNamePlural #>.ToList())
+        End Function
+
+        ' GET: /<#= modelName #>/Details/5
+        Public Function Details(id As Integer) As ViewResult
+			Dim p As <#= modelName #> = context.<#= modelNamePlural #>.Single(Function(x) x.<#= Model.PrimaryKey #> = id)
+            Return View(p)
+        End Function
+
+        ' GET: /<#= modelName #>/Create
+        Public Function Create() As ViewResult
+            Return View()
+        End Function
+
+        ' POST: /<#= modelName #>/Create
+        <HttpPost>
+        Public Function Create(d As <#= modelName #>) As ActionResult
+            If ModelState.IsValid
+                context.<#= modelNamePlural #>.Add(d)
+                context.SaveChanges()
+                Return RedirectToAction("Index")
+            End If
+            Return View()
+        End Function
+        
+        ' GET: /<#= modelName #>/Edit/5
+        Public Function Edit(id As Integer) As ViewResult
+		     Dim p As <#= modelName #> = context.<#= modelNamePlural #>.Single(Function(x) x.<#= Model.PrimaryKey #> = id)
+             Return View(p)
+        End Function
+
+        ' POST: /<#= modelName #>/Edit/5
+        <HttpPost>
+        Public Function Edit(id As Integer, form As FormCollection) As ActionResult
+            Dim p As <#= modelName #> = context.<#= modelNamePlural #>.Single(Function(x) x.<#= Model.PrimaryKey #> = id)
+            If TryUpdateModel(p)
+                context.SaveChanges()
+                Return RedirectToAction("Index")
+            End If
+            Return View()
+        End Function
+
+        ' GET: /<#= modelName #>/Delete/5
+        Public Function Delete(id As Integer) As ViewResult
+			Dim p as <#= modelName #> = context.<#= modelNamePlural #>.Single(Function(x) x.<#= Model.PrimaryKey #> = id)
+            Return View(p)
+        End Function
+
+        ' POST: /<#= modelName #>/Delete/5
+        <HttpPost>
+        Public Function Delete(id as Integer, collection As FormCollection) As ActionResult
+            Dim p As <#= modelName #> = context.<#= modelNamePlural #>.Single(Function(x) x.<#= Model.PrimaryKey #> = id)
+            context.<#= modelNamePlural #>.Remove(p)
+			context.SaveChanges()
+            Return RedirectToAction("Index")
+        End Function
+    End Class
+<#= T4Scaffolding.Namespaces.EndVb(Model.ControllerNamespace, Model.DefaultNamespace) #>

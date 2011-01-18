@@ -1,0 +1,107 @@
+﻿<#@ template language="C#" HostSpecific="True"  inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+<# if(!string.IsNullOrEmpty(Model.ModelTypeNamespace)) { #>
+using <#= Model.ModelTypeNamespace #>;
+<# } #>
+<# if(Model.DbContextNamespace != Model.ModelTypeNamespace) { #>
+using <#= Model.DbContextNamespace #>;
+<# } #>
+
+namespace <#= Model.ControllerNamespace #>
+{   
+<# var modelName = Model.ModelType; var modelNamePlural = Model.ModelTypePluralized; #>
+    public class <#= modelName #>Controller : Controller
+    {
+        private <#= Model.DbContextType #> context = new <#= Model.DbContextType #>();
+
+        //
+        // GET: /<#= modelName #>/
+
+        public ViewResult Index()
+        {
+            return View(context.<#= modelNamePlural #>.ToList());
+        }
+
+        //
+        // GET: /<#= modelName #>/Details/5
+
+        public ViewResult Details(int id)
+        {
+			<#= modelName #> p = context.<#= modelNamePlural #>.Single(x => x.<#= Model.PrimaryKey #> == id);
+            return View(p);
+        }
+
+        //
+        // GET: /<#= modelName #>/Create
+
+        public ActionResult Create()
+        {
+            return View();
+        } 
+
+        //
+        // POST: /<#= modelName #>/Create
+
+        [HttpPost]
+        public ActionResult Create(<#= modelName #> d)
+        {
+            if (ModelState.IsValid)
+            {
+              context.<#= modelNamePlural #>.Add(d);
+              context.SaveChanges();
+              return RedirectToAction("Index");  
+            }
+            return View();
+        }
+        
+        //
+        // GET: /<#= modelName #>/Edit/5
+ 
+        public ActionResult Edit(int id)
+        {
+		     <#= modelName #> p = context.<#= modelNamePlural #>.Single(x => x.<#= Model.PrimaryKey #> == id);
+             return View(p);
+        }
+
+        //
+        // POST: /<#= modelName #>/Edit/5
+
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection form)
+        {
+            <#= modelName #> p = context.<#= modelNamePlural #>.Single(x => x.<#= Model.PrimaryKey #> == id);
+            if (TryUpdateModel(p))
+            {
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        //
+        // GET: /<#= modelName #>/Delete/5
+ 
+        public ActionResult Delete(int id)
+        {
+			<#= modelName #> p = context.<#= modelNamePlural #>.Single(x => x.<#= Model.PrimaryKey #> == id);
+            return View(p);
+        }
+
+        //
+        // POST: /<#= modelName #>/Delete/5
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            <#= modelName #> p = context.<#= modelNamePlural #>.Single(x => x.<#= Model.PrimaryKey #> == id);
+            context.<#= modelNamePlural #>.Remove(p);
+			context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+    }
+}

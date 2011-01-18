@@ -61,9 +61,9 @@ namespace Specs.Features
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title",
                         "User",
-                        "Number of times favorited",
-                        "Date posted",
-                        "Thumbnail picture path"});
+                        "TimesFavorited",
+                        "Posted",
+                        "Thumbnail"});
             table1.AddRow(new string[] {
                         "Demo 1",
                         "Marcus",
@@ -89,15 +89,15 @@ namespace Specs.Features
                         "2011-01-01",
                         "/thumbnails/mynewboard_thumb.jpg"});
 #line 7
- testRunner.Given("the following Kanban boards", ((string)(null)), table1);
+ testRunner.Given("the following Kanbanboards", ((string)(null)), table1);
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("See the 3 most favorited kanban boards")]
-        public virtual void SeeThe3MostFavoritedKanbanBoards()
+        [NUnit.Framework.DescriptionAttribute("See the 3 most favorited kanbanboards")]
+        public virtual void SeeThe3MostFavoritedKanbanboards()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("See the 3 most favorited kanban boards", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("See the 3 most favorited kanbanboards", ((string[])(null)));
 #line 15
 this.ScenarioSetup(scenarioInfo);
 #line 16
@@ -106,9 +106,9 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title",
                         "User",
-                        "Number of times favorited",
-                        "Date posted",
-                        "Thumbnail picture path"});
+                        "TimesFavorited",
+                        "Posted",
+                        "Thumbnail"});
             table2.AddRow(new string[] {
                         "Kanban 1",
                         "David",
@@ -128,7 +128,7 @@ this.ScenarioSetup(scenarioInfo);
                         "2010-01-01",
                         "/thumbnails/demo1_thumb.jpg"});
 #line 17
- testRunner.Then("I should see the following Kanban boards as the most favorited:", ((string)(null)), table2);
+ testRunner.Then("I should see the following Kanbanboards as the most favorited:", ((string)(null)), table2);
 #line hidden
             testRunner.CollectScenarioErrors();
         }

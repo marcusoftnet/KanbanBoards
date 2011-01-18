@@ -1,0 +1,53 @@
+﻿<#@ template language="C#" HostSpecific="True"  inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+<# if((!string.IsNullOrEmpty(Model.ModelTypeNamespace)) && (Model.ModelTypeNamespace != Model.RepositoryNamespace)) { #>
+using <#= Model.ModelTypeNamespace #>;
+<# } #>
+
+namespace <#= Model.RepositoryNamespace #>
+{ 
+<# var modelName = Model.ModelType; var modelNamePlural = Model.ModelTypePluralized; var contextName = Model.DbContextType; #>
+    public class <#= modelName #>Repository : I<#= modelName #>Repository
+    {
+        <#= contextName #> context = new <#= contextName #>();
+
+        public IEnumerable<<#= modelName #>> GetAll<#= modelNamePlural #>()
+        {
+            return this.context.<#= modelNamePlural #>.ToList();
+        }
+
+        public <#= modelName #> GetById(int id)
+        {
+            return this.context.<#= modelNamePlural #>.Find(id);
+        }
+
+        public void Add(<#= modelName #> <#= modelName.ToLower() #>)
+        {
+            this.context.<#= modelNamePlural #>.Add(<#= modelName.ToLower() #>);
+        }
+
+        public void Delete(int id)
+        {
+            var d = this.context.<#= modelNamePlural #>.Find(id);
+            this.context.<#= modelNamePlural #>.Remove(d);
+        }
+
+        public void Save()
+        {
+            this.context.SaveChanges();
+        }
+    }
+
+	public interface I<#= modelName #>Repository
+    {
+        void Add(<#= modelName #> post);
+        void Delete(int id);
+        IEnumerable<<#= modelName #>> GetAll<#= modelNamePlural #>();
+        <#= modelName #> GetById(int id);
+        void Save();
+    }
+}

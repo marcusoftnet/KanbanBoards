@@ -1,0 +1,41 @@
+﻿<#@ template language="C#" HostSpecific="True"  inherits="DynamicTransform" #>
+<#@ Output Extension="vb" #>
+<# if((!string.IsNullOrEmpty(Model.ModelTypeNamespace)) && (Model.ModelTypeNamespace != Model.RepositoryNamespace)) { #>
+Imports <#= Model.ModelTypeNamespace #>
+<# } #>
+
+<#= T4Scaffolding.Namespaces.BeginVb(Model.RepositoryNamespace, Model.DefaultNamespace) #>
+<# var modelName = Model.ModelType; var modelNamePlural = Model.ModelTypePluralized; var contextName = Model.DbContextType; #>
+    Public Class <#= modelName #>Repository : Implements I<#= modelName #>Repository
+        Private context As <#= contextName #> = New <#= contextName #>()
+
+        Public Function GetAll<#= modelNamePlural #>() As IEnumerable(Of <#= modelName #>) Implements I<#= modelName #>Repository.GetAll<#= modelNamePlural #>
+            Return context.<#= modelNamePlural #>.ToList()
+        End Function
+
+        Public Function GetById(id As Integer) As <#= modelName #> Implements I<#= modelName #>Repository.GetById
+            Return context.<#= modelNamePlural #>.Find(id)
+        End Function
+
+        Public Sub Add(<#= modelName.ToLower() #> As <#= modelName #>) Implements I<#= modelName #>Repository.Add
+            context.<#= modelNamePlural #>.Add(<#= modelName.ToLower() #>)
+        End Sub
+
+        Public Sub Delete(id As Integer) Implements I<#= modelName #>Repository.Delete
+            Dim d = context.<#= modelNamePlural #>.Find(id)
+            context.<#= modelNamePlural #>.Remove(d)
+        End Sub
+
+        Public Sub Save() Implements I<#= modelName #>Repository.Save
+            context.SaveChanges()
+        End Sub
+    End Class
+
+	Public Interface I<#= modelName #>Repository
+        Sub Add(post As <#= modelName #>)
+        Sub Delete(id As Integer)
+        Function GetAll<#= modelNamePlural #>() As IEnumerable(Of <#= modelName #>)
+        Function GetById(id As Integer) As <#= modelName #>
+        Sub Save()
+    End Interface
+<#= T4Scaffolding.Namespaces.EndVb(Model.RepositoryNamespace, Model.DefaultNamespace) #>

@@ -1,0 +1,21 @@
+<#@ Template Language="C#" HostSpecific="True" Inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+
+namespace <#= Model.DbContextNamespace #>
+{
+    public partial class <#= Model.DbContextType #> : DbContext
+    {
+        // If you want Entity Framework to drop and regenerate your database automatically whenever you change
+        // your model schema, add the following line to the Application_Start() method in Global.asax.cs:
+        // DbDatabase.SetInitializer(new DropCreateDatabaseIfModelChanges<<#= Model.DbContextType #>>());
+
+<# foreach(System.Collections.Hashtable item in Model.Properties) { #>
+		public DbSet<<#= item["ModelType"] #>> <#= item["Name"] #> { get; set; }
+<# } #>
+    }
+}

@@ -1,0 +1,82 @@
+﻿<#@ template language="C#" HostSpecific="True"  inherits="DynamicTransform" #>
+<#@ Output Extension="vb" #>
+Imports System.Linq
+Imports System.Web.Mvc
+<# if(!string.IsNullOrEmpty(Model.ModelTypeNamespace)) { #>
+Imports <#= Model.ModelTypeNamespace #>
+<# } #>
+<# if((!string.IsNullOrEmpty(Model.DbContextNamespace)) && (Model.DbContextNamespace != Model.ModelTypeNamespace)) { #>
+Imports <#= Model.DbContextNamespace #>
+<# } #>
+
+<#= T4Scaffolding.Namespaces.BeginVb(Model.ControllerNamespace, Model.DefaultNamespace) #>
+<# var modelName = Model.ModelType; var modelNamePlural = Model.ModelTypePluralized; #>
+    Public Class <#= modelName #>Controller : Inherits Controller
+        Private ReadOnly repository As I<#= Model.Repository #>
+
+		' If you are using Dependency Injection, you can delete the following constructor
+        Public Sub New()
+			Me.New(New <#= Model.Repository #>())
+        End Sub
+
+        Public Sub New(ByVal r As I<#= Model.Repository #>)
+            repository = r
+        End Sub
+
+        ' GET: /<#= modelName #>/
+        Public Function Index() As ViewResult
+            Return View(repository.GetAll<#= modelNamePlural #>())
+        End Function
+
+        ' GET: /<#= modelName #>/Details/5
+        Public Function Details(ByVal id As Integer) As ViewResult
+            Return View(repository.GetById(id))
+        End Function
+
+        ' GET: /<#= modelName #>/Create
+        Public Function Create() As ActionResult
+            Return View()
+        End Function
+
+        ' POST: /<#= modelName #>/Create
+        <HttpPost>
+        Public Function Create(ByVal d As <#= modelName #>) As ActionResult
+            If ModelState.IsValid
+                repository.Add(d)
+                repository.Save()
+                Return RedirectToAction("Index")
+            End If
+            Return View()
+        End Function
+        
+        ' GET: /<#= modelName #>/Edit/5
+        Public Function Edit(ByVal id As Integer) As ActionResult
+             Return View(repository.GetById(id))
+        End Function
+
+        ' POST: /<#= modelName #>/Edit/5
+        <HttpPost>
+        Public Function Edit(ByVal id As Integer, ByVal form As FormCollection) As ActionResult
+            Dim d = repository.GetById(id)
+            If TryUpdateModel(d)
+                repository.Save()
+                Return RedirectToAction("Index")
+            End If
+            Return View()
+        End Function
+
+        ' GET: /<#= modelName #>/Delete/5
+        Public Function Delete(ByVal id As Integer) As ActionResult
+            Return View(repository.GetById(id))
+        End Function
+
+        ' POST: /<#= modelName #>/Delete/5
+        <HttpPost>
+        Public Function Delete(ByVal id As Integer, ByVal colleciton As FormCollection) As ActionResult
+            repository.Delete(id)
+            repository.Save()
+
+            Return RedirectToAction("Index")
+        End Function
+    End Class
+<#= T4Scaffolding.Namespaces.EndVb(Model.ControllerNamespace, Model.DefaultNamespace) #>

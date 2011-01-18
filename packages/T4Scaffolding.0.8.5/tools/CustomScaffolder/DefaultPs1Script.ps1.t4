@@ -1,0 +1,24 @@
+﻿<#@ template language="C#" HostSpecific="True"  inherits="DynamicTransform" #>
+<#@ Output Extension="ps1" #>
+[T4Scaffolding.Scaffolder(Description = "Enter a description of your scaffolder here")][CmdletBinding()]
+param(        
+    [string]$Project,
+	[string]$CodeLanguage,
+	[string[]]$TemplateFolders,
+	[switch]$Force = $false
+)
+
+# Decide where to put the output file relative to the Visual Studio project
+# Note that the filename extension will be added automatically based on the template's Output Extension directive
+$outputPath = "ExampleOutput"
+
+# Find the T4 template
+$templateFile = Find-ScaffolderTemplate <#= Model.TemplateName #> -TemplateFolders $TemplateFolders -Project $Project -CodeLanguage $CodeLanguage -ErrorIfNotFound
+if ($templateFile) {
+	# Render it, adding the output to the Visual Studio project
+	$namespace = (Get-Project $Project).Properties.Item("DefaultNamespace").Value
+	$wroteFile = Invoke-ScaffoldTemplate -Template $templateFile -Model @{ Namespace = $namespace; ExampleValue = "Hello, world!" } -Project $Project -OutputPath $outputPath -Force:$Force 
+	if($wroteFile) {
+		Write-Host "Added <#= Model.Scaffolder #> output '$wroteFile'"
+	}
+}

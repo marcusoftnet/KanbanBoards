@@ -1,0 +1,114 @@
+﻿<#@ template language="C#" HostSpecific="True"  inherits="DynamicTransform" #>
+<#@ Output Extension="cs" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+<# if(!string.IsNullOrEmpty(Model.ModelTypeNamespace)) { #>
+using <#= Model.ModelTypeNamespace #>;
+<# } #>
+<# if(Model.DbContextNamespace != Model.ModelTypeNamespace) { #>
+using <#= Model.DbContextNamespace #>;
+<# } #>
+
+namespace <#= Model.ControllerNamespace #>
+{   
+<# var modelName = Model.ModelType; var modelNamePlural = Model.ModelTypePluralized; #>
+    public class <#= modelName #>Controller : Controller
+    {
+        private readonly I<#= Model.Repository #> repository;
+
+		// If you are using Dependency Injection, you can delete the following constructor
+        public <#= Model.ModelType #>Controller() : this(new <#= Model.Repository #>())
+        {
+        }
+
+        public <#= Model.ModelType #>Controller(I<#= Model.Repository #> r)
+        {
+            this.repository = r;
+        }
+
+        //
+        // GET: /<#= modelName #>/
+
+        public ViewResult Index()
+        {
+            return View(this.repository.GetAll<#= modelNamePlural #>());
+        }
+
+        //
+        // GET: /<#= modelName #>/Details/5
+
+        public ViewResult Details(int id)
+        {
+            return View(this.repository.GetById(id));
+        }
+
+        //
+        // GET: /<#= modelName #>/Create
+
+        public ActionResult Create()
+        {
+            return View();
+        } 
+
+        //
+        // POST: /<#= modelName #>/Create
+
+        [HttpPost]
+        public ActionResult Create(<#= modelName #> d)
+        {
+            if (ModelState.IsValid)
+            {
+              this.repository.Add(d);
+              this.repository.Save();
+              return RedirectToAction("Index");  
+            }
+            return View();
+        }
+        
+        //
+        // GET: /<#= modelName #>/Edit/5
+ 
+        public ActionResult Edit(int id)
+        {
+             return View(this.repository.GetById(id));
+        }
+
+        //
+        // POST: /<#= modelName #>/Edit/5
+
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection form)
+        {
+            var d = this.repository.GetById(id);
+            if (TryUpdateModel(d))
+            {
+                this.repository.Save();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        //
+        // GET: /<#= modelName #>/Delete/5
+ 
+        public ActionResult Delete(int id)
+        {
+            return View(this.repository.GetById(id));
+        }
+
+        //
+        // POST: /<#= modelName #>/Delete/5
+
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            this.repository.Delete(id);
+            this.repository.Save();
+
+            return RedirectToAction("Index");
+        }
+    }
+}
