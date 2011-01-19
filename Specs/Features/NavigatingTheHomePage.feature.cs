@@ -102,6 +102,8 @@ namespace Specs.Features
 this.ScenarioSetup(scenarioInfo);
 #line 15
    testRunner.When("I to to the homepage");
+#line 16
+   testRunner.Then("I should be on the Index page");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title",
@@ -127,7 +129,7 @@ this.ScenarioSetup(scenarioInfo);
                         "100",
                         "2010-01-01",
                         "/thumbnails/demo1_thumb.jpg"});
-#line 16
+#line 17
    testRunner.Then("I should see the following Kanbanboards as the most favorited:", ((string)(null)), table2);
 #line hidden
             testRunner.CollectScenarioErrors();
