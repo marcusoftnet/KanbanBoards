@@ -34,7 +34,7 @@ namespace Specs.Steps
             var viewResult = kanbanBoardController.Index() as ViewResult;
             viewResult.Should().Not.Be.Null();
 
-            var viewModel = viewResult.Model as KanbanBoardIndexViewModel;
+            var viewModel = viewResult.ViewData.Model as KanbanBoardIndexViewModel;
             viewModel.Should().Not.Be.Null();
 
             ScenarioContext.Current.Set(viewModel);
