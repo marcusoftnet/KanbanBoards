@@ -89,7 +89,7 @@ namespace Specs.Features
                         "2011-01-01",
                         "/thumbnails/mynewboard_thumb.jpg"});
 #line 7
- testRunner.Given("the following Kanbanboards", ((string)(null)), table1);
+   testRunner.Given("the following Kanbanboards", ((string)(null)), table1);
 #line hidden
         }
         
@@ -98,10 +98,10 @@ namespace Specs.Features
         public virtual void SeeThe3MostFavoritedKanbanboards()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("See the 3 most favorited kanbanboards", ((string[])(null)));
-#line 15
+#line 14
 this.ScenarioSetup(scenarioInfo);
-#line 16
- testRunner.When("I to to the homepage");
+#line 15
+   testRunner.When("I to to the homepage");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title",
@@ -127,8 +127,8 @@ this.ScenarioSetup(scenarioInfo);
                         "100",
                         "2010-01-01",
                         "/thumbnails/demo1_thumb.jpg"});
-#line 17
- testRunner.Then("I should see the following Kanbanboards as the most favorited:", ((string)(null)), table2);
+#line 16
+   testRunner.Then("I should see the following Kanbanboards as the most favorited:", ((string)(null)), table2);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
