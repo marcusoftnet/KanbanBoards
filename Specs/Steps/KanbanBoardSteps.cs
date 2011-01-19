@@ -31,20 +31,30 @@ namespace Specs.Steps
             var kanbanBoardRepository = ScenarioContext.Current.Get<IKanbanBoardRepository>();
             var kanbanBoardController = new KanbanBoardController(kanbanBoardRepository);
 
-            var viewResult = kanbanBoardController.Index() as ViewResult;
-            viewResult.Should().Not.Be.Null();
+            var viewResult = kanbanBoardController.Index();
 
-            var viewModel = viewResult.ViewData.Model as KanbanBoardIndexViewModel;
-            viewModel.Should().Not.Be.Null();
+            ScenarioContext.Current.Set<ActionResult>(viewResult);
+        }
 
-            ScenarioContext.Current.Set(viewModel);
+        [Then(@"I should be on the (.*) page")]
+        public void ThenIShouldBeOnTheIndexPage(string viewName)
+        {
+            var actionResult = ScenarioContext.Current.Get<ActionResult>();
+            actionResult.Should().Be.OfType(typeof (ViewResult));
+
+            var viewResult = actionResult as ViewResult;
+            viewResult.ViewName.Should().Equal(viewName);
         }
 
         [Then(@"I should see the following Kanbanboards as the most favorited:")]
         public void ThenIShouldSeeTheFollowingKanbanBoardsAsTheMostFavorited(Table table)
         {
+
+            var viewResult = ScenarioContext.Current.Get<ActionResult>() as ViewResult;
+            var viewModel = viewResult.ViewData.Model as KanbanBoardIndexViewModel;
+
             var boardsFromStep = table.CreateSet<KanbanBoard>().ToList();
-            var viewModel = ScenarioContext.Current.Get<KanbanBoardIndexViewModel>();
+            
             var topFavoritedKanbanBoards = viewModel.TopFavoritedKanbanBoards;
 
             topFavoritedKanbanBoards.Count.Should().Equal(boardsFromStep.Count);

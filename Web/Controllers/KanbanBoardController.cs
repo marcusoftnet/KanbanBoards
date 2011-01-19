@@ -29,7 +29,7 @@ namespace Web.Controllers
                                     .ToList()
                          };
 
-            return View(vm);
+            return View("Index", vm);
         }
 
         //
