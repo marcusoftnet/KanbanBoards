@@ -30,8 +30,8 @@ namespace Specs.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Navigate to the homepage on www.kanban-boards.com", "In order to see the most important information of the site\nAs a user\nI want to na" +
-                    "vigate to the home page of the application", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Navigate to the homepage on www.kanban-boards.com", "In order to see the most important information of the site\r\nAs a user\r\nI want to " +
+                    "navigate to the home page of the application", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -130,7 +130,7 @@ this.ScenarioSetup(scenarioInfo);
                         "2010-01-01",
                         "/thumbnails/demo1_thumb.jpg"});
 #line 17
-   testRunner.Then("I should see the following Kanbanboards as the most favorited:", ((string)(null)), table2);
+   testRunner.And("I should see the following Kanbanboards as the most favorited:", ((string)(null)), table2);
 #line hidden
             testRunner.CollectScenarioErrors();
         }

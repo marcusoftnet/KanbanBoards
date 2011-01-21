@@ -14,7 +14,7 @@ Background:
 Scenario: See the 3 most favorited kanbanboards
    When I to to the homepage
    Then I should be on the Index page
-   Then I should see the following Kanbanboards as the most favorited:
+   And I should see the following Kanbanboards as the most favorited:
    | Title    | User   | TimesFavorited | Posted     | Thumbnail                     |
    | Kanban 1 | David  | 1000           | 2010-04-01 | /thumbnails/kanban1_thumb.jpg |
    | Demo 2   | Joakim | 300            | 2010-06-01 | /thumbnails/demo2_thumb.jpg   |
