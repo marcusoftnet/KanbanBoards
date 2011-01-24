@@ -24,11 +24,16 @@ namespace Web.Controllers
                          {
                              TopFavoritedKanbanBoards =
                                  repository.GetAllKanbanBoards()
-                                    .OrderByDescending(x => x.TimesFavorited)
-                                    .Take(3)
-                                    .ToList()
+                                 .OrderByDescending(x => x.TimesFavorited)
+                                 .Take(3)
+                                 .ToList(),
+                             LatestAddedKanbanBoards =
+                                 repository.GetAllKanbanBoards()
+                                 .OrderByDescending(x => x.Posted)
+                                 .Take(3)
+                                 .ToList()
                          };
-
+            
             return View("Index", vm);
         }
 

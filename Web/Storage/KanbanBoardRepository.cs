@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Web.Models.Domain;
 
 namespace Web.Storage
-{ 
+{
+    [DebuggerNonUserCode]
     public class KanbanBoardRepository : IKanbanBoardRepository
     {
         private readonly KanbanBoardsDbContext context = new KanbanBoardsDbContext();

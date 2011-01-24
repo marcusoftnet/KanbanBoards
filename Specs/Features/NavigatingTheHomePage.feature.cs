@@ -94,14 +94,14 @@ namespace Specs.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("See the 3 most favorited kanbanboards")]
-        public virtual void SeeThe3MostFavoritedKanbanboards()
+        [NUnit.Framework.DescriptionAttribute("Navigate to the homepage")]
+        public virtual void NavigateToTheHomepage()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("See the 3 most favorited kanbanboards", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to the homepage", ((string[])(null)));
 #line 14
 this.ScenarioSetup(scenarioInfo);
 #line 15
-   testRunner.When("I to to the homepage");
+   testRunner.When("I navigate to to the homepage");
 #line 16
    testRunner.Then("I should be on the Index page");
 #line hidden
@@ -130,7 +130,34 @@ this.ScenarioSetup(scenarioInfo);
                         "2010-01-01",
                         "/thumbnails/demo1_thumb.jpg"});
 #line 17
-   testRunner.And("I should see the following Kanbanboards as the most favorited:", ((string)(null)), table2);
+    testRunner.And("I should see the following Kanbanboards as the most favorited:", ((string)(null)), table2);
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Title",
+                        "User",
+                        "TimesFavorited",
+                        "Posted",
+                        "Thumbnail"});
+            table3.AddRow(new string[] {
+                        "My new board",
+                        "Christophe",
+                        "50",
+                        "2011-01-01",
+                        "/thumbnails/mynewboard_thumb.jpg"});
+            table3.AddRow(new string[] {
+                        "Demo 2",
+                        "Joakim",
+                        "300",
+                        "2010-06-01",
+                        "/thumbnails/demo2_thumb.jpg"});
+            table3.AddRow(new string[] {
+                        "Kanban 1",
+                        "David",
+                        "1000",
+                        "2010-04-01",
+                        "/thumbnails/kanban1_thumb.jpg"});
+#line 22
+    testRunner.And("I should see the following Kanbanboards as the latests additions:", ((string)(null)), table3);
 #line hidden
             testRunner.CollectScenarioErrors();
         }

@@ -8,7 +8,7 @@ namespace Specs.Steps
     [Binding]
     public class KanbanBoardControllerSteps
     {
-        [When(@"I to to the homepage")]
+        [When(@"I navigate to to the homepage")]
         public void WhenIToToTheHomepage()
         {
             var kanbanBoardRepository = ScenarioContext.Current.Get<IKanbanBoardRepository>();

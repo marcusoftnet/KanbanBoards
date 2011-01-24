@@ -9,7 +9,7 @@ namespace Specs.Steps
     public class KanbanBoardIndexViewModelSteps
     {
         [Then(@"I should see the following Kanbanboards as the most favorited:")]
-        public void ThenIShouldSeeTheFollowingKanbanBoardsAsTheMostFavorited(Table table)
+        public void AsMostFavorited(Table table)
         {
             var viewModel = GetTheViewResult();
 
@@ -17,6 +17,18 @@ namespace Specs.Steps
 
             table.CompareToSet(topFavoritedKanbanBoards);
         }
+
+        [Then(@"I should see the following Kanbanboards as the latests additions:")]
+        public void AsLatestAdditions(Table table)
+        {
+            var viewModel = GetTheViewResult();
+
+            var latestsAdded = viewModel.LatestAddedKanbanBoards;
+
+            table.CompareToSet(latestsAdded);
+
+        }
+
 
         private static KanbanBoardIndexViewModel GetTheViewResult()
         {
