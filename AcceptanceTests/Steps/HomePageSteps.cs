@@ -1,31 +1,35 @@
-﻿using AcceptanceTests.Steps.Infrastructure;
+﻿using AcceptanceTests.Steps.PageObjects;
 using Should.Fluent;
 using TechTalk.SpecFlow;
-using WatiN.Core;
 
 namespace AcceptanceTests.Steps
 {
     [Binding]
     public class HomePageSteps
     {
+        public HomePageSteps()
+        {
+            ScenarioContext.Current.Set(new HomePage());
+        }
+
+        private static HomePage Page { get { return ScenarioContext.Current.Get<HomePage>(); } }
+
         [When(@"I navigate to to the homepage")]
         public void WhenINavigateToToTheHomepage()
         {
-            WebBrowser.NavigateTo("/");
+            Page.Visit();
         }
 
         [Then(@"I should see a list of the 3 most favorited Kanban boards")]
-        public void ThenIShouldSeeAListOfThe3MostFavoritedKanbanBoards()
+        public void SeeMostFavorited()
         {
-            var top = WebBrowser.Current.Div(Find.ById("topKanbanBoards"));
-            top.Divs.Count.Should().Equal(3);
+            Page.NumberOfFavoritedKanbanBoards.Should().Equal(3);
         }
 
         [Then(@"I should see a list of the 3 latests added Kanban boards")]
-        public void ThenIShouldSeeAListOfThe3LatestsAddedKanbanBoards()
+        public void SeeLatestAdded()
         {
-            var top = WebBrowser.Current.Div(Find.ById("latestKanbanBoards"));
-            top.Divs.Count.Should().Equal(3);
+            Page.NumberofLatestAddedKanbanBoards.Should().Equal(3);
         }
     }
 }

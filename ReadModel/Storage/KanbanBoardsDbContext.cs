@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
-using Web.Models.Domain;
+using ReadModel.Model;
 
-namespace Web.Storage
+namespace ReadModel.Storage
 {
     public partial class KanbanBoardsDbContext : DbContext
     {

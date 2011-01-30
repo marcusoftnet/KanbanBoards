@@ -1,8 +1,8 @@
 ﻿using NSubstitute;
+using ReadModel.Model;
+using ReadModel.Storage;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using Web.Models.Domain;
-using Web.Storage;
 
 namespace Specs.Steps
 {

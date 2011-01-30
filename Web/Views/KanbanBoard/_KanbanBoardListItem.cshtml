@@ -1,0 +1,7 @@
+﻿@model ReadModel.Model.KanbanBoard
+<div class="kanbanboard">
+    <img src="@Model.Thumbnail" alt="@Model.Title" width="200" height="100" />
+    <br />
+    @Model.Title, By: @Model.User # Favs: @Model.TimesFavorited Posted: @Model.Posted.ToShortDateString()
+    <hr />
+</div>

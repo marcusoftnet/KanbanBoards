@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using Microsoft.Practices.Unity;
-using Web.Storage;
+using ReadModel;
+using ReadModel.Storage;
 
 //[assembly: WebActivator.PreApplicationStartMethod(typeof(Web.AppStart_Unity), "Start")]
 
@@ -9,6 +10,8 @@ namespace Web
     public static class AppStart_Unity {
         public static void RegisterServices(IUnityContainer container) {
             container.RegisterType<IKanbanBoardRepository, KanbanBoardRepository>();
+            container.RegisterType<IKanbanBoardReadService, KanbanBoardReadService>();
+
         }
 
         public static void Start() {

@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
+using ReadModel.Model;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
-using Web.Models.ViewModels;
 
 namespace Specs.Steps
 {

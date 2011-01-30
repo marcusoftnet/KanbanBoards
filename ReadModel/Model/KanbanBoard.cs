@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Web.Models.Domain
+namespace ReadModel.Model
 {
     public class KanbanBoard
     {

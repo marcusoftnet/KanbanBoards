@@ -1,6 +1,4 @@
-﻿using System;
-using System.Configuration;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using WatiN.Core;
 
 namespace AcceptanceTests.Steps.Infrastructure
@@ -16,13 +14,6 @@ namespace AcceptanceTests.Steps.Infrastructure
                     ScenarioContext.Current["browser"] = new IE();
                 return (Browser)ScenarioContext.Current["browser"];
             }
-        }
-
-        public static void NavigateTo(string relativeUrl)
-        {
-            var rootUrl = new Uri(ConfigurationManager.AppSettings["RootUrl"]);
-            var absoluteUrl = new Uri(rootUrl, relativeUrl);
-            Current.GoTo(absoluteUrl);
         }
 
         [AfterScenario]

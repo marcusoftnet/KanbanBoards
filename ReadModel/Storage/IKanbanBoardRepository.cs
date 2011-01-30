@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Web.Models.Domain;
+using ReadModel.Model;
 
-namespace Web.Storage
+namespace ReadModel.Storage
 {
     public interface IKanbanBoardRepository
     {

@@ -1,7 +1,8 @@
 ﻿using System.Web.Mvc;
+using ReadModel;
+using ReadModel.Storage;
 using TechTalk.SpecFlow;
 using Web.Controllers;
-using Web.Storage;
 
 namespace Specs.Steps
 {
@@ -9,10 +10,11 @@ namespace Specs.Steps
     public class KanbanBoardControllerSteps
     {
         [When(@"I navigate to to the homepage")]
-        public void WhenIToToTheHomepage()
+        public void WhenIGoToToTheHomepage()
         {
-            var kanbanBoardRepository = ScenarioContext.Current.Get<IKanbanBoardRepository>();
-            var kanbanBoardController = new KanbanBoardController(kanbanBoardRepository);
+            var repository = ScenarioContext.Current.Get<IKanbanBoardRepository>();
+            var readService = new KanbanBoardReadService(repository);
+            var kanbanBoardController = new KanbanBoardController(readService);
 
             var viewResult = kanbanBoardController.Index();
 

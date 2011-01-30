@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Web.Models.Domain;
+using ReadModel.Model;
 
-namespace Web.Storage
+namespace ReadModel.Storage
 {
     [DebuggerNonUserCode]
     public class KanbanBoardRepository : IKanbanBoardRepository
@@ -17,7 +17,7 @@ namespace Web.Storage
 
         public KanbanBoard GetById(int id)
         {
-            return this.context.KanbanBoards.Find(id);
+            return context.KanbanBoards.Find(id);
         }
 
         public void Add(KanbanBoard kanbanboard)

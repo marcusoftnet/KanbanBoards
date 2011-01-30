@@ -1,7 +1,8 @@
 using System.Web.Mvc;
 using Ninject;
 using Ninject.Mvc3;
-using Web.Storage;
+using ReadModel;
+using ReadModel.Storage;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Web.AppStart_NinjectMVC3), "Start")]
 
@@ -9,6 +10,7 @@ namespace Web {
     public static class AppStart_NinjectMVC3 {
         public static void RegisterServices(IKernel kernel) {
             kernel.Bind<IKanbanBoardRepository>().To<KanbanBoardRepository>();
+            kernel.Bind<IKanbanBoardReadService>().To<KanbanBoardReadService>();
         }
 
         public static void Start() {

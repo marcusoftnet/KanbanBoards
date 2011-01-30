@@ -78,6 +78,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\HomePageSteps.cs" />
     <Compile Include="Steps\Infrastructure\WebBrowser.cs" />
+    <Compile Include="Steps\PageObjects\HomePage.cs" />
+    <Compile Include="Steps\PageObjects\PageObjectBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

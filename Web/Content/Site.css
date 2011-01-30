@@ -5,45 +5,22 @@ to use a different color start by replacing all instances of
 ----------------------------------------------------------*/
 body
 {
-    background-color: #5c87b2;
-    font-size: 75%;
-    font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
+    background-color:#fff;
+    
     margin: 0;
     padding: 0;
-    color: #696969;
+
 }
 
-a:link
-{
-    color: #034af3;
-    text-decoration: underline;
-}
-a:visited
-{
-    color: #505abc;
-}
-a:hover
-{
-    color: #1d60ff;
-    text-decoration: none;
-}
-a:active
-{
-    color: #12eb87;
-}
 
-p, ul
-{
-    margin-bottom: 20px;
-    line-height: 1.6em;
-}
 
 /* HEADINGS   
 ----------------------------------------------------------*/
 h1, h2, h3, h4, h5, h6
 {
     font-size: 1.5em;
-    color: #000;
+    color: #444;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1
@@ -81,18 +58,12 @@ first child of the left and right table columns */
 
 /* you can specify a greater or lesser percentage for the 
 page width. Or, you can specify an exact pixel width. */
-.page
-{
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
 
 #header
 {
     position: relative;
     margin-bottom: 0px;
-    color: #000;
+    color: #444;
     padding: 0;
 }
 
@@ -101,18 +72,19 @@ page width. Or, you can specify an exact pixel width. */
     font-weight: bold;
     padding: 5px 0;
     margin: 0;
-    color: #fff;
+    color: #444;
     border: none;
     line-height: 2em;
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 32px !important;
 }
 
 #main
 {
-    padding: 30px 30px 15px 30px;
-    background-color: #fff;
-    margin-bottom: 30px;
-    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+     background:#e4f2fd;
+     border-top: solid 1px #eee ;
+     border-bottom:solid 1px #eee;
+      padding-top:10px;
 }
 
 #footer
@@ -129,11 +101,11 @@ page width. Or, you can specify an exact pixel width. */
 ----------------------------------------------------------*/
 ul#menu
 {
-    border-bottom: 1px #5C87B2 solid;
-    padding: 0 0 2px;
+   
+    padding: 0 0 0px;
     position: relative;
     margin: 0;
-    text-align: right;
+    text-align: left;
 }
 
 ul#menu li
@@ -153,30 +125,30 @@ ul#menu li#greeting
 
 ul#menu li a
 {
-    padding: 10px 20px;
+    padding: 2px 20px;
     font-weight: bold;
     text-decoration: none;
     line-height: 2.8em;
-    background-color: #e8eef4;
-    color: #034af3;
+    background-color: #ff9338;
+    color: #fff;
 }
 
 ul#menu li a:hover
 {
-    background-color: #fff;
+    
     text-decoration: none;
 }
 
 ul#menu li a:active
 {
-    background-color: #a6e2a6;
+    background-color: #ff9338;
     text-decoration: none;
 }
 
 ul#menu li.selected a
 {
-    background-color: #fff;
-    color: #000;
+    background-color: #464646;
+    color: #fff;
 }
 
 /* FORM LAYOUT ELEMENTS   
@@ -184,20 +156,21 @@ ul#menu li.selected a
 
 fieldset 
 {
-    border:1px solid #ddd;
-    padding:0 1.4em 1.4em 1.4em;
-    margin:0 0 1.5em 0;
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #CCC;
+}
+
+fieldset p 
+{
+    margin: 2px 12px 10px 10px;
 }
 
 legend 
 {
-    font-size:1.2em;
-    font-weight: bold;
-}
-
-textarea 
-{
-    min-height: 75px;
+    font-size: 1.1em;
+    font-weight: 600;
+    padding: 2px 4px 8px 4px;
 }
 
 input[type="text"] 
@@ -215,25 +188,6 @@ input[type="password"]
 /* TABLE
 ----------------------------------------------------------*/
 
-table 
-{
-  border: solid 1px #e8eef4;
-  border-collapse: collapse;
-}
-
-table td 
-{
-  padding: 5px;   
-  border: solid 1px #e8eef4;
-}
-
-table th
-{
-  padding: 6px 5px;
-  text-align: left;
-  background-color: #e8eef4; 
-  border: solid 1px #e8eef4;   
-}
 
 /* MISC  
 ----------------------------------------------------------*/
@@ -249,7 +203,7 @@ table th
 
 #menucontainer
 {
-    margin-top:40px;
+    
 }
 
 div#title
@@ -265,25 +219,25 @@ div#title
     display:block;
     text-align:right;
     margin:10px;
-    color:White;
+    
 }
 
 #logindisplay a:link
 {
-    color: white;
+    color: blue;
     text-decoration: underline;
 }
 
 #logindisplay a:visited
 {
-    color: white;
+    color: #444;
     text-decoration: underline;
 }
 
 #logindisplay a:hover
 {
-    color: white;
-    text-decoration: none;
+    color: #444;
+    text-decoration: underline;
 }
 
 /* Styles for validation helpers
@@ -318,15 +272,11 @@ div#title
 /* Styles for editor and display helpers
 ----------------------------------------------------------*/
 .display-label,
-.editor-label
-{
-    margin: 1em 0 0 0;
-}
-
+.editor-label,
 .display-field,
 .editor-field
 {
-    margin:0.5em 0 0 0;
+    margin: 0.5em 0;
 }
 
 .text-box
