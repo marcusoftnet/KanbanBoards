@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using Domain;
 using System.Linq;
-using ReadModel.Model;
 
-namespace ReadModel.Storage
+namespace Repositories.Storage
 {
     [DebuggerNonUserCode]
     public class KanbanBoardRepository : IKanbanBoardRepository

@@ -1,5 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Data.Entity.Database;
+using System.Web.Configuration;
+using System.Web.Mvc;
 using System.Web.Routing;
+using Domain;
+using Repositories.Storage;
 
 namespace Web
 {
@@ -31,6 +36,8 @@ namespace Web
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+
+            DbDatabase.SetInitializer(new KanbanBoardDbIntializerWith5SeededBoards());
         }
     }
 }

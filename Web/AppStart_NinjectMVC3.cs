@@ -1,19 +1,27 @@
 using System.Web.Mvc;
+using CommandService;
 using Ninject;
 using Ninject.Mvc3;
 using ReadModel;
-using ReadModel.Storage;
+using Repositories.Storage;
+using Web.Models.Infrastructure;
 
 [assembly: WebActivator.PreApplicationStartMethod(typeof(Web.AppStart_NinjectMVC3), "Start")]
 
-namespace Web {
-    public static class AppStart_NinjectMVC3 {
-        public static void RegisterServices(IKernel kernel) {
+namespace Web
+{
+    public static class AppStart_NinjectMVC3
+    {
+        public static void RegisterServices(IKernel kernel)
+        {
             kernel.Bind<IKanbanBoardRepository>().To<KanbanBoardRepository>();
             kernel.Bind<IKanbanBoardReadService>().To<KanbanBoardReadService>();
+            kernel.Bind<IAuthenticationService>().To<KanbanAuthenticationService>();
+            kernel.Bind<IKanbanBoardCommandService>().To<KanbanBoardCommandService>();
         }
 
-        public static void Start() {
+        public static void Start()
+        {
             // Create Ninject DI Kernel 
             IKernel kernel = new StandardKernel();
 

@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using ReadModel.Model;
-using ReadModel.Storage;
+using Repositories.Storage;
 
 namespace ReadModel
 {
@@ -28,6 +28,16 @@ namespace ReadModel
                     .Take(3)
                     .ToList()
             };
+        }
+
+        public MyBoardsViewModel GetMyBoardsViewModel(string userName)
+        {
+            return new MyBoardsViewModel
+                       {
+                           Boards = kanbanBoardRepository.GetAllKanbanBoards()
+                               .Where(x => x.User == userName)
+                               .ToList()
+                       };
         }
     }
 }

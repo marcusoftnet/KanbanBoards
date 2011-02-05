@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -63,12 +64,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\CreatingANewKanbanBoard.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreatingANewKanbanBoard.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\NavigatingTheHomePage.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NavigatingTheHomePage.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\NavigatingTheMyBoardsPage.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NavigatingTheMyBoardsPage.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Steps\AutenticationServiceSteps.cs" />
     <Compile Include="Steps\KanbanBoardControllerSteps.cs" />
     <Compile Include="Steps\KanbanBoardIndexViewModelSteps.cs" />
     <Compile Include="Steps\KanbanBoardRepositorySteps.cs" />
@@ -76,16 +88,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Features\CreatingANewKanbanBoard.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreatingANewKanbanBoard.feature.cs</LastGenOutput>
+    </None>
     <None Include="Features\NavigatingTheHomePage.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>NavigatingTheHomePage.feature.cs</LastGenOutput>
     </None>
+    <None Include="Features\NavigatingTheMyBoardsPage.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>NavigatingTheMyBoardsPage.feature.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommandService\CommandService.csproj">
+      <Project>{7E980B18-1A15-400E-AAAE-6B86292E5670}</Project>
+      <Name>CommandService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{816D2079-9FEC-4D91-9CF2-3634AE5B38FC}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReadModel\ReadModel.csproj">
       <Project>{04E90685-14B4-4929-8BE8-F6D218C5F54B}</Project>
       <Name>ReadModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositories\Repositories.csproj">
+      <Project>{1BF81CAA-621A-4A34-9C77-4B454285FDDA}</Project>
+      <Name>Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\Web\Web.csproj">
       <Project>{464D3174-AFDD-4261-B1D3-948098935A4C}</Project>

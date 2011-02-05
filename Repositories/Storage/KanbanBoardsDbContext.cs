@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
-using ReadModel.Model;
+using Domain;
 
-namespace ReadModel.Storage
+namespace Repositories.Storage
 {
     public partial class KanbanBoardsDbContext : DbContext
     {
@@ -9,6 +9,8 @@ namespace ReadModel.Storage
         // your model schema, add the following line to the Application_Start() method in Global.asax.cs:
         // DbDatabase.SetInitializer(new DropCreateDatabaseIfModelChanges<WebContext>());
 
-		public DbSet< KanbanBoard> KanbanBoards { get; set; }
+		public DbSet<KanbanBoard> KanbanBoards { get; set; }
+
+       
     }
 }

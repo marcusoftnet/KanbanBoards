@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ReadModel.Model
+namespace Domain
 {
     public class KanbanBoard
     {
@@ -10,5 +10,8 @@ namespace ReadModel.Model
         public int TimesFavorited { get; set; }
         public DateTime Posted { get; set; }
         public string Thumbnail { get; set; }
+        public string Description { get; set; }
+
+        public string Tags { get; set; }
     }
 }

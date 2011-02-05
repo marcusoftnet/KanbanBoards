@@ -17,21 +17,22 @@ namespace Specs.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.5.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Navigate to the homepage on www.kanban-boards.com")]
-    public partial class NavigateToTheHomepageOnWww_Kanban_Boards_ComFeature
+    [NUnit.Framework.DescriptionAttribute("Creating a new Kanban board")]
+    public partial class CreatingANewKanbanBoardFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "NavigatingTheHomePage.feature"
+#line 1 "CreatingANewKanbanBoard.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Navigate to the homepage on www.kanban-boards.com", "In order to see the most important information of the site\r\nAs a user\r\nI want to " +
-                    "navigate to the home page of the application", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Creating a new Kanban board", "In order to show off my great kanban board and get some insightful feedback\r\nAs a" +
+                    " logged-in user\r\nI want to be able to create information about a new Kanban boar" +
+                    "d", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -89,75 +90,59 @@ namespace Specs.Features
                         "2011-01-01",
                         "/thumbnails/mynewboard_thumb.jpg"});
 #line 7
-   testRunner.Given("the following Kanbanboards", ((string)(null)), table1);
+  testRunner.Given("the following Kanbanboards", ((string)(null)), table1);
+#line 13
+  testRunner.And("I am logged in on the site as Marcus");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Navigate to the homepage")]
-        public virtual void NavigateToTheHomepage()
+        [NUnit.Framework.DescriptionAttribute("Create a Kanban board with all the required information")]
+        public virtual void CreateAKanbanBoardWithAllTheRequiredInformation()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Navigate to the homepage", ((string[])(null)));
-#line 14
-this.ScenarioSetup(scenarioInfo);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a Kanban board with all the required information", ((string[])(null)));
 #line 15
-   testRunner.When("I navigate to to the homepage");
+this.ScenarioSetup(scenarioInfo);
 #line 16
-   testRunner.Then("I should be on the Index page");
+ testRunner.When("I navigate to to the create new kanbanboard page");
+#line 17
+ testRunner.Then("I should be on the Create page");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Field",
+                        "Value"});
+            table2.AddRow(new string[] {
                         "Title",
-                        "User",
-                        "TimesFavorited",
-                        "Posted",
-                        "Thumbnail"});
+                        "KanbanBoard 1"});
             table2.AddRow(new string[] {
-                        "Kanban 1",
-                        "David",
-                        "1000",
-                        "2010-04-01",
-                        "/thumbnails/kanban1_thumb.jpg"});
+                        "Description",
+                        "This is a board that we\'ve put together in my last project"});
             table2.AddRow(new string[] {
-                        "Demo 2",
-                        "Joakim",
-                        "300",
-                        "2010-06-01",
-                        "/thumbnails/demo2_thumb.jpg"});
+                        "Tags",
+                        "Software, Developement, Swedish"});
             table2.AddRow(new string[] {
-                        "Demo 1",
-                        "Marcus",
-                        "100",
-                        "2010-01-01",
-                        "/thumbnails/demo1_thumb.jpg"});
-#line 17
-    testRunner.And("I should see the following Kanbanboards as the most favorited:", ((string)(null)), table2);
+                        "BoardImage",
+                        "mycoolboard.jpg"});
+#line 18
+ testRunner.When("I submit a board with the following information", ((string)(null)), table2);
+#line 24
+ testRunner.Then("I should be redirected the MyBoards page");
+#line 25
+ testRunner.When("I am redirected to the MyBoards page");
+#line 26
+ testRunner.Then("I should be on the MyBoards page");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
                         "Title",
-                        "User",
-                        "TimesFavorited",
-                        "Posted",
-                        "Thumbnail"});
+                        "User"});
             table3.AddRow(new string[] {
-                        "My new board",
-                        "Christophe",
-                        "50",
-                        "2011-01-01",
-                        "/thumbnails/mynewboard_thumb.jpg"});
+                        "Demo 1",
+                        "Marcus"});
             table3.AddRow(new string[] {
-                        "Demo 2",
-                        "Joakim",
-                        "300",
-                        "2010-06-01",
-                        "/thumbnails/demo2_thumb.jpg"});
-            table3.AddRow(new string[] {
-                        "Kanban 1",
-                        "David",
-                        "1000",
-                        "2010-04-01",
-                        "/thumbnails/kanban1_thumb.jpg"});
-#line 22
-    testRunner.And("I should see the following Kanbanboards as the latests additions:", ((string)(null)), table3);
+                        "KanbanBoard 1",
+                        "Marcus"});
+#line 27
+  testRunner.And("the following boards should be listed as my boards:", ((string)(null)), table3);
 #line hidden
             testRunner.CollectScenarioErrors();
         }

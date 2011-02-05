@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{BFE2DEE8-4DC5-4A7A-8C45-EE97F5DE0923}</ProjectGuid>
+    <ProjectGuid>{1BF81CAA-621A-4A34-9C77-4B454285FDDA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tests</RootNamespace>
-    <AssemblyName>Tests</AssemblyName>
+    <RootNamespace>Repositories</RootNamespace>
+    <AssemblyName>Repositories</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,22 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NSubstitute">
-      <HintPath>..\packages\NSubstitute.1.0.0.0\lib\35\NSubstitute.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.5.7.10213\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.mocks, Version=2.5.7.10213, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.5.7.10213\lib\nunit.mocks.dll</HintPath>
-    </Reference>
-    <Reference Include="pnunit.framework">
-      <HintPath>..\packages\NUnit.2.5.7.10213\lib\pnunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Should.Fluent">
-      <HintPath>..\packages\ShouldFluent.1.1.12.0\lib\Should.Fluent.dll</HintPath>
+    <Reference Include="EntityFramework">
+      <HintPath>..\Specs\bin\Debug\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -58,28 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadModel\KanbanBoardReadServiceTests.cs" />
-    <Compile Include="CommandService\KanbanBoardCommandServiceTests.cs" />
+    <Compile Include="Storage\KanbanBoardDbIntializerWith5SeededBoards.cs" />
+    <Compile Include="Storage\IKanbanBoardRepository.cs" />
+    <Compile Include="Storage\KanbanBoardRepository.cs" />
+    <Compile Include="Storage\KanbanBoardsDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CommandService\CommandService.csproj">
-      <Project>{7E980B18-1A15-400E-AAAE-6B86292E5670}</Project>
-      <Name>CommandService</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{816D2079-9FEC-4D91-9CF2-3634AE5B38FC}</Project>
       <Name>Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ReadModel\ReadModel.csproj">
-      <Project>{04E90685-14B4-4929-8BE8-F6D218C5F54B}</Project>
-      <Name>ReadModel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Repositories\Repositories.csproj">
-      <Project>{1BF81CAA-621A-4A34-9C77-4B454285FDDA}</Project>
-      <Name>Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

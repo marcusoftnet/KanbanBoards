@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 using ReadModel;
-using ReadModel.Storage;
+using Repositories.Storage;
 
 //[assembly: WebActivator.PreApplicationStartMethod(typeof(Web.AppStart_Unity), "Start")]
 
