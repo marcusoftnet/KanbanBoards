@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using ReadModel.Model;
+using ReadModel;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 

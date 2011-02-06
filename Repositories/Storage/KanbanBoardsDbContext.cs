@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity;
-using Domain;
+using ReadModel;
 
 namespace Repositories.Storage
 {

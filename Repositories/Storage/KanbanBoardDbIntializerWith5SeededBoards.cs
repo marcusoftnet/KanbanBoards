@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data.Entity.Database;
-using Domain;
+using ReadModel;
 
 namespace Repositories.Storage
 {

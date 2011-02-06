@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Domain;
+using ReadModel;
 
 namespace Repositories.Storage
 {

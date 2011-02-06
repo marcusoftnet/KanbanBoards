@@ -1,8 +1,8 @@
 ﻿using CommandService;
 using CommandService.Commands;
-using Domain;
 using NSubstitute;
 using NUnit.Framework;
+using ReadModel;
 using Repositories.Storage;
 
 namespace Tests.WriteService

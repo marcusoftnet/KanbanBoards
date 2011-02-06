@@ -1,6 +1,6 @@
 ﻿using System;
 using CommandService.Commands;
-using Domain;
+using ReadModel;
 using Repositories.Storage;
 
 namespace CommandService

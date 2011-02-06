@@ -1,6 +1,6 @@
-﻿using ReadModel.Model;
+﻿using ReadModel;
 
-namespace ReadModel
+namespace ReadService
 {
     public interface IKanbanBoardReadService
     {

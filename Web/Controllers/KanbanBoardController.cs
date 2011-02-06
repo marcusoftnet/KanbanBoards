@@ -1,7 +1,7 @@
 using System.Web.Mvc;
 using CommandService;
 using CommandService.Commands;
-using ReadModel;
+using ReadService;
 using Web.Models.Infrastructure;
 
 namespace Web.Controllers

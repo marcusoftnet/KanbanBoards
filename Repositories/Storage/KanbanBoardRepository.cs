@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using Domain;
 using System.Linq;
+using ReadModel;
 
 namespace Repositories.Storage
 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Domain;
 using NSubstitute;
 using NUnit.Framework;
 using ReadModel;
+using ReadService;
 using Repositories.Storage;
 using Should.Fluent;
 

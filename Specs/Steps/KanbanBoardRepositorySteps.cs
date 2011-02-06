@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Domain;
+﻿using System.Linq;
 using NSubstitute;
+using ReadModel;
 using Repositories.Storage;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;

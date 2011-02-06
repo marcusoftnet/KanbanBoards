@@ -1,9 +1,8 @@
 ﻿using System.Web.Mvc;
 using CommandService;
 using CommandService.Commands;
-using Domain;
 using ReadModel;
-using ReadModel.Model;
+using ReadService;
 using Should.Fluent;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;

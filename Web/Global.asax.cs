@@ -1,9 +1,6 @@
-﻿using System;
-using System.Data.Entity.Database;
-using System.Web.Configuration;
+﻿using System.Data.Entity.Database;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Domain;
 using Repositories.Storage;
 
 namespace Web

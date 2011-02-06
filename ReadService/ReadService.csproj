@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{816D2079-9FEC-4D91-9CF2-3634AE5B38FC}</ProjectGuid>
+    <ProjectGuid>{09E0DBBB-B1AE-4E52-AFA2-8FB5063FC1C6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Domain</RootNamespace>
-    <AssemblyName>Domain</AssemblyName>
+    <RootNamespace>ReadService</RootNamespace>
+    <AssemblyName>ReadService</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,8 +40,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="KanbanBoard.cs" />
+    <Compile Include="IKanbanBoardReadService.cs" />
+    <Compile Include="KanbanBoardReadService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ReadModel\ReadModel.csproj">
+      <Project>{04E90685-14B4-4929-8BE8-F6D218C5F54B}</Project>
+      <Name>ReadModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repositories\Repositories.csproj">
+      <Project>{1BF81CAA-621A-4A34-9C77-4B454285FDDA}</Project>
+      <Name>Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

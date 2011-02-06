@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using ReadModel.Model;
+using ReadModel;
 using Repositories.Storage;
 
-namespace ReadModel
+namespace ReadService
 {
     public class KanbanBoardReadService : IKanbanBoardReadService
     {

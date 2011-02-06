@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Domain
+namespace ReadModel
 {
     public class KanbanBoard
     {

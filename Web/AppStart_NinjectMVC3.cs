@@ -2,7 +2,7 @@ using System.Web.Mvc;
 using CommandService;
 using Ninject;
 using Ninject.Mvc3;
-using ReadModel;
+using ReadService;
 using Repositories.Storage;
 using Web.Models.Infrastructure;
 

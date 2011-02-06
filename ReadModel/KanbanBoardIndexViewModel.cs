@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Domain;
 
-namespace ReadModel.Model
+namespace ReadModel
 {
     public class KanbanBoardIndexViewModel
     {
