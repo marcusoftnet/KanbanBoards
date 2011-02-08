@@ -26,7 +26,5 @@ namespace Specs.Steps
             var redirectResult = actionResult as RedirectToRouteResult;
             redirectResult.RouteValues["action"].Should().Equal(viewName);
         }
-
-       
     }
 }

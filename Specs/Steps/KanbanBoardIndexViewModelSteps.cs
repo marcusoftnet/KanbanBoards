@@ -29,7 +29,6 @@ namespace Specs.Steps
 
         }
 
-
         private static KanbanBoardIndexViewModel GetTheViewResult()
         {
             var viewResult = ScenarioContext.Current.Get<ActionResult>() as ViewResult;
