@@ -52,8 +52,8 @@ namespace Specs.Steps
             MvcSteps.LatestActionResult.Should().Be.OfType(typeof(ViewResult));
             var viewResult = MvcSteps.LatestActionResult as ViewResult;
 
-            viewResult.Model.Should().Be.OfType(typeof(MyBoardsViewModel));
-            var vm = viewResult.Model as MyBoardsViewModel;
+            viewResult.ViewData.Model.Should().Be.OfType(typeof(MyBoardsViewModel));
+            var vm = viewResult.ViewData.Model as MyBoardsViewModel;
 
             table.CompareToSet<KanbanBoard>(vm.Boards);
         }
