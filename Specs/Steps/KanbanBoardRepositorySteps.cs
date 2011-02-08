@@ -11,33 +11,28 @@ namespace Specs.Steps
     [Binding]
     public class KanbanBoardRepositorySteps
     {
-        private const string REPOSITORY_KEY = "KanbanBoardsRepository";
+        private IKanbanBoardRepository singleKanbanBoardRepository;
 
-        public static IKanbanBoardRepository CurrentKanbanBoardRepository
+        [BeforeScenario]
+        public void Setup()
         {
-            get
-            {
-                if(!ScenarioContext.Current.ContainsKey(REPOSITORY_KEY))
-                {
-                    var mockedRepository = Substitute.For<IKanbanBoardRepository>();
-                    ScenarioContext.Current.Set(mockedRepository, REPOSITORY_KEY);
-                }
-                return ScenarioContext.Current.Get<IKanbanBoardRepository>(REPOSITORY_KEY);
-            }
+            ScenarioContext.Current.Set(() => singleKanbanBoardRepository ?? (singleKanbanBoardRepository = Substitute.For<IKanbanBoardRepository>()));
         }
 
         public static void AddBoardToReturn(KanbanBoard newBoardToReturn)
         {
-            var currentBoards = CurrentKanbanBoardRepository.GetAllKanbanBoards().ToList();
+            var kanbanBoardRepository = ScenarioContext.Current.Get<IKanbanBoardRepository>();
+            var currentBoards = kanbanBoardRepository.GetAllKanbanBoards().ToList();
             currentBoards.Add(newBoardToReturn);
-            CurrentKanbanBoardRepository.GetAllKanbanBoards().Returns(currentBoards);
+            kanbanBoardRepository.GetAllKanbanBoards().Returns(currentBoards);
         }
 
         [Given(@"the following Kanbanboards")]
         public void GivenTheFollowingKanbanBoards(Table table)
         {
             var kanbanBoards = table.CreateSet<KanbanBoard>();
-            CurrentKanbanBoardRepository.GetAllKanbanBoards().Returns(kanbanBoards);
+            var kanbanBoardRepository = ScenarioContext.Current.Get<IKanbanBoardRepository>();
+            kanbanBoardRepository.GetAllKanbanBoards().Returns(kanbanBoards);
         }
     }
 }

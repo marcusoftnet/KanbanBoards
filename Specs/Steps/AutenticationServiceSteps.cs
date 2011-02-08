@@ -7,12 +7,12 @@ namespace Specs.Steps
     [Binding]
     public class AutenticationServiceSteps
     {
-        private IAuthenticationService authenticationServiceSingleton;
+        private IAuthenticationService singleAuthenticationService;
 
         [BeforeScenario]
         public void Setup()
         {
-            ScenarioContext.Current.Set(() => authenticationServiceSingleton ?? (authenticationServiceSingleton = Substitute.For<IAuthenticationService>()));
+            ScenarioContext.Current.Set(() => singleAuthenticationService ?? (singleAuthenticationService = Substitute.For<IAuthenticationService>()));
         }
 
         [Given(@"I am logged in on the site as (.*)")]

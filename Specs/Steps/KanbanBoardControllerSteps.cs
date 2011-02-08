@@ -4,6 +4,7 @@ using CommandService.Commands;
 using Domain;
 using ReadModel;
 using ReadModel.Model;
+using Repositories.Storage;
 using Should.Fluent;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -18,7 +19,7 @@ namespace Specs.Steps
         private static KanbanBoardController CreateController()
         {
             var authService = ScenarioContext.Current.Get<IAuthenticationService>();
-            var repository = KanbanBoardRepositorySteps.CurrentKanbanBoardRepository;
+            var repository = ScenarioContext.Current.Get<IKanbanBoardRepository>();
 
             var readService = new KanbanBoardReadService(repository);
             var commandService = new KanbanBoardCommandService(repository);
