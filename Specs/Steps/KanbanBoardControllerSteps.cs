@@ -7,6 +7,7 @@ using Should.Fluent;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using Web.Controllers;
+using Web.Models.Infrastructure;
 
 namespace Specs.Steps
 {
@@ -15,7 +16,7 @@ namespace Specs.Steps
     {
         private static KanbanBoardController CreateController()
         {
-            var authService = AutenticationServiceSteps.CurrentAuthenticationService;
+            var authService = ScenarioContext.Current.Get<IAuthenticationService>();
             var repository = KanbanBoardRepositorySteps.CurrentKanbanBoardRepository;
 
             var readService = new KanbanBoardReadService(repository);
