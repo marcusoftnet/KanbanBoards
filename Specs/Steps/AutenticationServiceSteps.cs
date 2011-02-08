@@ -7,26 +7,20 @@ namespace Specs.Steps
     [Binding]
     public class AutenticationServiceSteps
     {
-        private const string AUTHSERVICE_KEY = "AuthenticationService";
+        private IAuthenticationService authenticationServiceSingleton;
 
-        public static IAuthenticationService CurrentAuthenticationService
+        [BeforeScenario]
+        public void Setup()
         {
-            get
-            {
-                if (!ScenarioContext.Current.ContainsKey(AUTHSERVICE_KEY))
-                {
-                    var mockedAuthService = Substitute.For<IAuthenticationService>();
-                    ScenarioContext.Current.Set(mockedAuthService, AUTHSERVICE_KEY);
-                }
-                return ScenarioContext.Current.Get<IAuthenticationService>(AUTHSERVICE_KEY);
-            }
+            ScenarioContext.Current.Set(() => authenticationServiceSingleton ?? (authenticationServiceSingleton = Substitute.For<IAuthenticationService>()));
         }
 
         [Given(@"I am logged in on the site as (.*)")]
         public void GivenLoggedIn(string userName)
         {
-            CurrentAuthenticationService.IsAuthenticated.Returns(true);
-            CurrentAuthenticationService.UserName.Returns(userName);
+            var authenticationService = ScenarioContext.Current.Get<IAuthenticationService>();
+            authenticationService.IsAuthenticated.Returns(true);
+            authenticationService.UserName.Returns(userName);
         }
     }
 }
