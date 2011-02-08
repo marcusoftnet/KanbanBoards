@@ -19,10 +19,9 @@ namespace Specs.Steps
         private static KanbanBoardController CreateController()
         {
             var authService = ScenarioContext.Current.Get<IAuthenticationService>();
-            var repository = ScenarioContext.Current.Get<IKanbanBoardRepository>();
 
-            var readService = new KanbanBoardReadService(repository);
-            var commandService = new KanbanBoardCommandService(repository);
+            var readService = ScenarioContext.Current.Get<IKanbanBoardReadService>();
+            var commandService = ScenarioContext.Current.Get<IKanbanBoardCommandService>();
             
             return new KanbanBoardController(readService, authService, commandService);
         }
