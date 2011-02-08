@@ -73,9 +73,6 @@ namespace Specs.Steps
             var viewResult = controller.Create(createVm);
 
             ScenarioContext.Current.Set(viewResult);
-            
-            KanbanBoardRepositorySteps.AddBoardToReturn(
-                new KanbanBoard{Title = createVm.Title, User = createVm.User});
         }
     }
 }
