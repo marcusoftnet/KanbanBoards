@@ -5,7 +5,7 @@ using NUnit.Framework;
 using ReadModel;
 using Repositories.Storage;
 
-namespace Tests.WriteService
+namespace Tests.CommandService
 {
     [TestFixture]
     public class KanbanBoardCommandServiceTests

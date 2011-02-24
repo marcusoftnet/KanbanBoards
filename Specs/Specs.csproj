@@ -81,10 +81,13 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Steps\AutenticationServiceSteps.cs" />
+    <Compile Include="Steps\KanbanBoardReadServiceSteps.cs" />
+    <Compile Include="Steps\KanbanBoardCommandServiceSteps.cs" />
     <Compile Include="Steps\KanbanBoardControllerSteps.cs" />
     <Compile Include="Steps\KanbanBoardIndexViewModelSteps.cs" />
     <Compile Include="Steps\KanbanBoardRepositorySteps.cs" />
     <Compile Include="Steps\MvcSteps.cs" />
+    <Compile Include="Steps\TestKanbanBoardRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

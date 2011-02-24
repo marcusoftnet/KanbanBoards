@@ -3,6 +3,7 @@ using CommandService;
 using CommandService.Commands;
 using ReadModel;
 using ReadService;
+using Repositories.Storage;
 using Should.Fluent;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -17,11 +18,11 @@ namespace Specs.Steps
         private static KanbanBoardController CreateController()
         {
             var authService = ScenarioContext.Current.Get<IAuthenticationService>();
-            var repository = KanbanBoardRepositorySteps.CurrentKanbanBoardRepository;
+            var repository = ScenarioContext.Current.Get<IKanbanBoardRepository>();
 
             var readService = new KanbanBoardReadService(repository);
             var commandService = new KanbanBoardCommandService(repository);
-            
+
             return new KanbanBoardController(readService, authService, commandService);
         }
 
@@ -29,14 +30,16 @@ namespace Specs.Steps
         public void WhenIGoToToTheHomepage()
         {
             var controller = CreateController();
-            MvcSteps.LatestActionResult = controller.Index();
+            var result = controller.Index();
+            ScenarioContext.Current.Set<ActionResult>(result);
         }
 
         [When(@"I navigate to to the create new kanbanboard page")]
         public void WhenIGoToTheCreatePage()
         {
             var controller = CreateController();
-            MvcSteps.LatestActionResult = controller.Create();
+            var result = controller.Create();
+            ScenarioContext.Current.Set(result);
         }
 
         [When(@"I am redirected to the MyBoards page")]
@@ -44,14 +47,16 @@ namespace Specs.Steps
         public void NavigateMyBoards()
         {
             var controller = CreateController();
-            MvcSteps.LatestActionResult = controller.MyBoards();
+            var result = controller.MyBoards();
+            ScenarioContext.Current.Set(result);
         }
 
         [Then(@"the following boards should be listed as my boards:")]
         public void ListedAsMyBoards(Table table)
         {
-            MvcSteps.LatestActionResult.Should().Be.OfType(typeof(ViewResult));
-            var viewResult = MvcSteps.LatestActionResult as ViewResult;
+            var actionResult = ScenarioContext.Current.Get<ActionResult>();
+            actionResult.Should().Be.OfType(typeof(ViewResult));
+            var viewResult = actionResult as ViewResult;
 
             viewResult.ViewData.Model.Should().Be.OfType(typeof(MyBoardsViewModel));
             var vm = viewResult.ViewData.Model as MyBoardsViewModel;
@@ -64,10 +69,9 @@ namespace Specs.Steps
         {
             var createVm = enteredInformation.CreateInstance<AddKanbanBoardCommand>();
             var controller = CreateController();
-            MvcSteps.LatestActionResult = controller.Create(createVm);
+            var viewResult = controller.Create(createVm);
 
-            KanbanBoardRepositorySteps.AddBoardToReturn(
-                new KanbanBoard{Title = createVm.Title, User = createVm.User});
+            ScenarioContext.Current.Set(viewResult);
         }
     }
 }

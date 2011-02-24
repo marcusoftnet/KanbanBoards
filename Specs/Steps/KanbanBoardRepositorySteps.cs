@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using NSubstitute;
-using ReadModel;
+﻿using ReadModel;
 using Repositories.Storage;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
@@ -10,33 +8,26 @@ namespace Specs.Steps
     [Binding]
     public class KanbanBoardRepositorySteps
     {
-        private const string REPOSITORY_KEY = "KanbanBoardsRepository";
+        private TestKanbanBoardRepository singleKanbanBoardRepository;
 
-        public static IKanbanBoardRepository CurrentKanbanBoardRepository
+        [BeforeScenario]
+        public void Setup()
         {
-            get
-            {
-                if(!ScenarioContext.Current.ContainsKey(REPOSITORY_KEY))
-                {
-                    var mockedRepository = Substitute.For<IKanbanBoardRepository>();
-                    ScenarioContext.Current.Set(mockedRepository, REPOSITORY_KEY);
-                }
-                return ScenarioContext.Current.Get<IKanbanBoardRepository>(REPOSITORY_KEY);
-            }
+            ScenarioContext.Current.Set<IKanbanBoardRepository>(CreateAndReturnASingleInstanceOfTheRepository);
+            ScenarioContext.Current.Set<TestKanbanBoardRepository>(CreateAndReturnASingleInstanceOfTheRepository);
         }
 
-        public static void AddBoardToReturn(KanbanBoard newBoardToReturn)
+        private TestKanbanBoardRepository CreateAndReturnASingleInstanceOfTheRepository()
         {
-            var currentBoards = CurrentKanbanBoardRepository.GetAllKanbanBoards().ToList();
-            currentBoards.Add(newBoardToReturn);
-            CurrentKanbanBoardRepository.GetAllKanbanBoards().Returns(currentBoards);
+            return singleKanbanBoardRepository ?? (singleKanbanBoardRepository = new TestKanbanBoardRepository());
         }
 
         [Given(@"the following Kanbanboards")]
         public void GivenTheFollowingKanbanBoards(Table table)
         {
-            var kanbanBoards = table.CreateSet<KanbanBoard>();
-            CurrentKanbanBoardRepository.GetAllKanbanBoards().Returns(kanbanBoards);
+            var kanbanBoardRepository = ScenarioContext.Current.Get<TestKanbanBoardRepository>();
+            kanbanBoardRepository.Clear();
+            kanbanBoardRepository.AddRange(table.CreateSet<KanbanBoard>());
         }
     }
 }
