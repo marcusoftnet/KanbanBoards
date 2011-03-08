@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "Logout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Logout</h2>
+@using(Html.BeginRouteForm("OpenId")) {
+    <p>You are about to logout.  Remember that you can always login with your OpenID account.</p>
+    <input type="submit" value="Logout" />
+}

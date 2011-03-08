@@ -1,0 +1,93 @@
+﻿/*-----------------------------------------------------------------------------
+    OpenID
+-----------------------------------------------------------------------------*/
+
+.openIdLogo
+{
+    float: right;
+}
+
+#loginButton
+{
+    height: 31px;
+}
+
+.openIdUrlInput
+{
+    border: 1px solid #cccccc;
+    width: 400px;
+    font-size: 1.25em;
+    font-weight: bold;
+    height: 25px;
+}
+
+.hoverButton
+{
+    padding: 10px;
+}
+
+.openIdProviders
+{
+    margin-top: 0;
+    line-height: 150%;
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+
+.openIdProviders li
+{
+    float: left;
+    list-style: none;
+}
+
+.openIdProviders li div img
+{
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+.openIdProviders li div
+{
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #cccccc;
+    width: 125px;
+    height: 50px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background: center center;
+}
+
+.openIdProviders li div:hover
+{
+    cursor: pointer;
+    cursor: hand;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #5A554E;
+    width: 125px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+#Google
+{
+    background: url('/Content/themes/base/images/google.png') no-repeat center center;
+}
+
+#Yahoo
+{
+    background: url('/Content/themes/base/images/yahoo.png') no-repeat center center;
+}
+
+#myOpenId
+{
+    background: url('/Content/themes/base/images/myopenid.png') no-repeat center center;
+}
+
+#AOL
+{
+    background: url('/Content/themes/base/images/aol.png') no-repeat center center;
+}

@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DotNetOpenAuth, Version=3.4.6.10357, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetOpenAuth.3.4.6.10357\lib\DotNetOpenAuth.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EFCodeFirst.0.8\lib\EntityFramework.dll</HintPath>
     </Reference>
@@ -54,11 +57,23 @@
     <Reference Include="Microsoft.Practices.Unity.Interception.Configuration">
       <HintPath>..\packages\Unity.2.0\lib\20\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Mvc, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Mvc3Futures.3.0.20105.0\lib\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib, Version=3.0.59.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MvcContrib.Mvc3-ci.3.0.59.0\lib\MvcContrib.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\packages\Ninject.2.1.0.76\lib\40\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.MVC3">
       <HintPath>..\packages\Ninject.MVC3.0.3\lib\Ninject.MVC3.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenIdPortableArea, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\OpenIdPortableArea.RazorViews.2.0.0.0\lib\OpenIdPortableArea.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
@@ -94,6 +109,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MessageHandlers\AuthenticatedMessageHandler.cs" />
+    <Compile Include="MessageHandlers\ClaimsRequestMessageHandler.cs" />
     <Compile Include="Models\Infrastructure\IAuthenticationService.cs" />
     <Compile Include="Models\Infrastructure\KanbanAuthenticationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,7 +123,14 @@
     <Content Include="Content\print.css" />
     <Content Include="Content\screen.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\images\aol.png" />
+    <Content Include="Content\themes\base\images\google.png" />
+    <Content Include="Content\themes\base\images\logo_openid.png" />
+    <Content Include="Content\themes\base\images\myopenid.png" />
+    <Content Include="Content\themes\base\images\yahoo.png" />
+    <Content Include="Content\themes\base\providers.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\providers.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -156,7 +180,9 @@
   <ItemGroup>
     <Content Include="Views\KanbanBoard\_KanbanBoardListItem.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Areas\Web.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommandService\CommandService.csproj">
       <Project>{7E980B18-1A15-400E-AAAE-6B86292E5670}</Project>
@@ -174,6 +200,27 @@
       <Project>{1BF81CAA-621A-4A34-9C77-4B454285FDDA}</Project>
       <Name>Repositories</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\OpenId\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\OpenId\Views\Shared\ProvidersWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\OpenId\Views\Shared\LoginWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\OpenId\Views\Shared\LoginStatusWidget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\OpenId\Views\OpenId\Success.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\OpenId\Views\OpenId\Logout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\OpenId\Views\OpenId\Login.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -1,0 +1,6 @@
+﻿    @if (Request.IsAuthenticated) {
+        <text><b>@User.Identity.Name</b> (@Html.ActionLink("logout", "Logout", "OpenId", new { area = "OpenId" }, new { @class="logout" }))</text>
+    }
+    else {
+        <text>[ @Html.ActionLink("Login", "Login", "OpenId", new { area = "OpenId" }, null) ]</text>
+    }

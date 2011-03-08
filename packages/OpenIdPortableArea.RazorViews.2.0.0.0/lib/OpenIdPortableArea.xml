@@ -1,0 +1,432 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OpenIdPortableArea</name>
+    </assembly>
+    <members>
+        <member name="T:OpenIdPortableArea.Helpers.OpenIdHelpers">
+            <summary>
+                Contains static helper methods
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Helpers.OpenIdHelpers.Login(System.Web.Security.FormsAuthenticationTicket)">
+            <summary>
+                Uses the FormsAuthenticationTicket to add a FormsAuthentication Cookie
+            </summary>
+            <param name="ticket"></param>
+        </member>
+        <member name="M:OpenIdPortableArea.Helpers.OpenIdHelpers.Login(System.String,System.String,System.TimeSpan,System.Boolean)">
+            <summary>
+                Creates a FormsAuthenticationTicket, and adds a FormsAuthentication Cookie
+            </summary>
+            <param name="name"></param>
+            <param name="userData"></param>
+            <param name="duration"></param>
+            <param name="isPersistant"></param>
+        </member>
+        <member name="M:OpenIdPortableArea.Helpers.OpenIdHelpers.Logout">
+            <summary>
+                Logs out the user.
+            </summary>
+        </member>
+        <member name="T:OpenIdPortableArea.Areas.OpenId.Services.IAuthenticationService">
+            <summary>
+            An authentication service interface designed to handle claims requests, and interacting with the host application.
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.IAuthenticationService.AddClaim(DotNetOpenAuth.OpenId.Extensions.SimpleRegistration.ClaimsRequest)">
+            <summary>
+            Adds a ClaimsRequest
+            </summary>
+            <param name="claim"></param>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.IAuthenticationService.GetAuthenticationStatus">
+            <summary>
+            Gets the AuthenticationStatus
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.IAuthenticationService.IsValid(System.String,System.Uri)">
+            <summary>
+            Determines if an openIdUrl is 
+            </summary>
+            <param name="openIdUrl"></param>
+            <param name="callbackUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.IAuthenticationService.Logout">
+            <summary>
+            Logsout the user
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.IAuthenticationService.Redirect">
+            <summary>
+            Redirects the user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.IAuthenticationService.SetMessage(OpenIdPortableArea.Messages.AuthenticatedMessage)">
+            <summary>
+            Set the AuthenticatedMessage
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:OpenIdPortableArea.Areas.OpenId.Models.LoginInput">
+            <summary>
+            LoginInput View Model
+            </summary>
+        </member>
+        <member name="P:OpenIdPortableArea.Areas.OpenId.Models.LoginInput.OpenIdUrl">
+            <summary>
+            The Url of the OpenId Provider
+            </summary>
+        </member>
+        <member name="P:OpenIdPortableArea.Areas.OpenId.Models.LoginInput.ReturnUrl">
+            <summary>
+            The Url to return to after a successful login
+            </summary>
+        </member>
+        <member name="T:OpenIdPortableArea.Messages.LoggingOutMessage">
+            <summary>
+                A message indicating that the user is logging out
+            </summary>
+        </member>
+        <member name="T:OpenIdPortableArea.Messages.EventMessage">
+            <summary>
+                A base class that defines a message
+            </summary>
+        </member>
+        <member name="P:OpenIdPortableArea.Messages.EventMessage.Message">
+            <summary>
+                Contains a message describing the event
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Messages.LoggingOutMessage.#ctor">
+            <summary>
+                Constructor.  Provides default message configuration.
+            </summary>
+        </member>
+        <member name="P:OpenIdPortableArea.Messages.LoggingOutMessage.AutoLogout">
+            <summary>
+                Indicates whether or not the OpenIdPortableArea should
+                automatically log out the current user.
+            </summary>
+        </member>
+        <member name="P:OpenIdPortableArea.Messages.LoggingOutMessage.ReturnUrl">
+            <summary>
+                Contains a Url that OpenIdPortable Area will redirect to after this message object is processed.
+            </summary>
+        </member>
+        <member name="T:OpenIdPortableArea.Areas.OpenId.OpenIdPortableAreaMap">
+            <summary>
+            Map for host to configure Master Page and ContentPlaceHolders.
+            </summary>
+        </member>
+        <member name="T:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController">
+            <summary>
+            OpenIdController
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.#ctor">
+            <summary>
+            Initializes the object with its default AuthenticationService and EventMessageBusService
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.#ctor(OpenIdPortableArea.Areas.OpenId.Services.IAuthenticationService,MvcContrib.PortableAreas.IApplicationBus)">
+            <summary>
+            Initializes the object with the provided services
+            </summary>
+            <param name="authenticationService"></param>
+            <param name="bus"></param>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.Logout(System.String)">
+            <summary>
+            Displays the Logout View
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.Send(MvcContrib.PortableAreas.IEventMessage)">
+            <summary>
+            Sends a message over the IApplicationBus, also sets LastSentMessage.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.Logout">
+            <summary>
+            Logs out the current user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.Login(System.String)">
+            <summary>
+            Returns the Login View
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.Login(OpenIdPortableArea.Areas.OpenId.Models.LoginInput)">
+            <summary>
+            Redirects the user to their OpenId Provider
+            </summary>
+            <param name="loginInput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.Result(OpenIdPortableArea.Areas.OpenId.Models.LoginInput)">
+            <summary>
+            Callback Action for the OpenId Provider.  Sends a Message regarding the Status of the OpenId Provider's response.
+            </summary>
+            <param name="loginInput"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.Success">
+            <summary>
+            Displays a view to the user indicating that they were successfully logged in.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.ProvidersWidget">
+            <summary>
+            Returns a partial view containing OpenId Providers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.LoginWidget(OpenIdPortableArea.Areas.OpenId.Models.LoginInput)">
+            <summary>
+            Returns a partial view that is a simple form that contains
+            a text box and button, and posts back to Login.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.LoginStatusWidget">
+            <summary>
+            Returns a partial view that displays the status of the
+            currently logged in user.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.AddError(System.String)">
+            <summary>
+            Adds a ModelState Error using OpenIdUrlFormKey.
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.GetCallBackUrl(System.String)">
+            <summary>
+            Builds a Callback url
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="P:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.LastSentMessage">
+            <summary>
+            The last IEventMessage to be sent over the IApplicationBus
+            </summary>
+        </member>
+        <member name="P:OpenIdPortableArea.Areas.OpenId.Controllers.OpenIdController.HttpRequest">
+            <summary>
+            The current Http Request
+            </summary>
+        </member>
+        <member name="T:OpenIdPortableArea.UI.UIHelpers">
+            <summary>
+            Helper functions for displaying widgets
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.UI.UIHelpers.LoginStatusWidget(System.Web.Mvc.HtmlHelper)">
+            <summary>
+            Loads a simple LoginStatusWidget to display whether or not the user is authenticated
+            </summary>
+            <param name="helper"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.UI.UIHelpers.ProvidersWidget(System.Web.Mvc.HtmlHelper)">
+            <summary>
+            Loads a simple ProvidersWidget to display various OpenId Providers
+            </summary>
+            <param name="helper"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.UI.UIHelpers.LoginWidget(System.Web.Mvc.HtmlHelper)">
+            <summary>
+            Loads a simple LoginWidget that takes an OpenId endpoint Uri as input
+            </summary>
+            <param name="helper"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.UI.UIHelpers.LoginWidget(System.Web.Mvc.HtmlHelper,OpenIdPortableArea.Areas.OpenId.Models.LoginInput)">
+            <summary>
+            Loads a simple LoginWidget that takes an OpenId endpoint Uri as input
+            </summary>
+            <param name="helper"></param>
+            <param name="loginInput"></param>
+            <returns></returns>
+        </member>
+        <member name="T:OpenIdPortableArea.Messages.LoggedOutMessage">
+            <summary>
+                Message indicating that the user is about to logout.
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Messages.LoggedOutMessage.#ctor">
+            <summary>
+                Constructor.  Provides default message configuration.
+            </summary>
+        </member>
+        <member name="P:OpenIdPortableArea.Messages.LoggedOutMessage.UseDefaultLogoutMethod">
+            <summary>
+                Indicates whether or not the OpenIdPortableArea should
+                use its default logout method (FormsAuthentication)
+            </summary>
+        </member>
+        <member name="P:OpenIdPortableArea.Messages.LoggedOutMessage.ReturnUrl">
+            <summary>
+                Contains a Url that OpenIdPortable Area will redirect to after this message object is processed
+            </summary>
+        </member>
+        <member name="T:OpenIdPortableArea.Areas.OpenId.Services.AuthenticationService">
+            <summary>
+                A service that provides OpenId support
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.AuthenticationService.#ctor">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.AuthenticationService.#ctor(System.Action)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="logout"></param>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.AuthenticationService.Logout">
+            <summary>
+            Logs out the user
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.AuthenticationService.IsValid(System.String,System.Uri)">
+            <summary>
+            Determines if a request can be made to
+            the user's OpenId provider.
+            </summary>
+            <param name="openIdUrl"></param>
+            <param name="callbackUrl"></param>
+            <returns></returns>
+            <exception cref="T:DotNetOpenAuth.Messaging.ProtocolException"></exception>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.AuthenticationService.AddClaim(DotNetOpenAuth.OpenId.Extensions.SimpleRegistration.ClaimsRequest)">
+            <summary>
+            Adds a claim to the request.
+            </summary>
+            <param name="claim"></param>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.AuthenticationService.Redirect">
+            <summary>
+            Returns an ActionResult that will redirect
+            the user to their OpenId provider.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.AuthenticationService.GetAuthenticationStatus">
+            <summary>
+            Pareses the response and returns its status
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.Services.AuthenticationService.SetMessage(OpenIdPortableArea.Messages.AuthenticatedMessage)">
+            <summary>
+            Sets properties on the AuthenticatedMessage
+            </summary>
+            <param name="message"></param>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="T:OpenIdPortableArea.Messages.UnauthenticatedMessage">
+            <summary>
+                Represents when a User's attempt to authenticate with an OpenId Provider was unsuccessful
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Messages.UnauthenticatedMessage.#ctor(System.String)">
+            <summary>
+                Constructor
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="T:OpenIdPortableArea.Messages.ClaimsRequestMessage">
+            <summary>
+                Message for configuring the ClaimsRequest
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Messages.ClaimsRequestMessage.#ctor">
+            <summary>
+                Constructor
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Messages.ClaimsRequestMessage.ToString">
+            <summary>
+                Returns Message
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:OpenIdPortableArea.Messages.ClaimsRequestMessage.Claim">
+            <summary>
+                Contains a claim object to be configured.
+                Configuring properties of this object sets the demand level of desired user data.
+            </summary>
+            <remarks>
+                While it is helpful to request additional data from the OpenId Providers,
+                very few ever really honor the requests.
+            </remarks>
+        </member>
+        <member name="T:OpenIdPortableArea.Areas.OpenId.OpenIdAreaRegistration">
+            <summary>
+                Registration for this Area.  Provides default routes.
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.OpenIdAreaRegistration.RegisterArea(System.Web.Mvc.AreaRegistrationContext,MvcContrib.PortableAreas.IApplicationBus)">
+            <summary>
+            Registers the OpenId Area (which also includes embedded resources)
+            </summary>
+            <param name="context"></param>
+            <param name="applicationBus"></param>
+        </member>
+        <member name="M:OpenIdPortableArea.Areas.OpenId.OpenIdAreaRegistration.RegisterRoutes(System.Web.Mvc.AreaRegistrationContext)">
+            <summary>
+            Registers routes specific to the OpenId area
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="P:OpenIdPortableArea.Areas.OpenId.OpenIdAreaRegistration.AreaName">
+            <summary>
+            The name of the Area
+            </summary>
+        </member>
+        <member name="T:OpenIdPortableArea.Messages.AuthenticatedMessage">
+            <summary>
+                Message sent whenever an OpenId provider has verified the identity of the user
+            </summary>
+        </member>
+        <member name="M:OpenIdPortableArea.Messages.AuthenticatedMessage.#ctor">
+            <summary>
+                Constructor.  Sets the Message
+            </summary>
+        </member>
+        <member name="P:OpenIdPortableArea.Messages.AuthenticatedMessage.ClaimedIdentifier">
+            <summary>
+                A string containing the unique OpenId for the authenticated user
+            </summary>
+        </member>
+        <member name="P:OpenIdPortableArea.Messages.AuthenticatedMessage.ClaimsResponse">
+            <summary>
+                The ClaimsResponse that may contain anscillary data returned by the OpenId Provider
+            </summary>
+        </member>
+        <member name="P:OpenIdPortableArea.Messages.AuthenticatedMessage.IsSecure">
+            <summary>
+                Returns whether or not the ClaimedIdentifier is from a secure OpenId Provider
+            </summary>
+        </member>
+        <member name="P:OpenIdPortableArea.Messages.AuthenticatedMessage.ReturnUrl">
+            <summary>
+                Contains a Url that OpenIdPortable Area will redirect to after this message object is processed.
+            </summary>
+        </member>
+    </members>
+</doc>

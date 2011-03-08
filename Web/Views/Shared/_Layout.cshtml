@@ -26,7 +26,7 @@
             </ul>
         </div>        
             <div id="logindisplay" class="span-2 append-1">
-                @Html.Partial("_LogOnPartial")
+                @Html.Action("LoginStatusWidget", new { controller = "OpenId", area = "OpenId" })
             </div>
         <div id="main" class="span-23 append-top">
             @RenderBody()            

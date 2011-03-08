@@ -1,0 +1,18 @@
+﻿@model OpenIdPortableArea.Areas.OpenId.Models.LoginInput
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<img src="@Url.Content("~/Content/themes/base/images/logo_openid.png")" width="120" height="41" alt="OpenID" class="openIdLogo" />
+<h2>Login</h2>
+
+<p>Please login using an OpenId account.</p>
+    
+@Html.ValidationSummary("There was a problem with the OpenID URL provided.")
+
+@Html.Partial("LoginWidget", Model)
+@Html.Partial("ProvidersWidget")
+    
+<div style="clear:both;" />
